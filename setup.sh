@@ -5,15 +5,7 @@ VIM=0
 ZSH=0
 TMUX=0
 GOLANG=0
-
-
-# IL faut mieux gerer AFFICHAGE
-# Il faut revoir le la fermeture de session zsh 
-# 	a voir su - totoro
-# 	pourquoi theme tilix pas pris en compte après un redemarrage avec su - totoro	mais apres reset session oui
-# 	autocompletion ansible
-#		sudo apt install python3-argcomplete
-#		sudo activate-global-python-argcomplete3
+PACKAGES="fonts-powerline fonts-liberation vim dconf-cli xsel most zsh bat tmux git curl tilix"
 
 display_usage() {
 	echo -e "Usage: ./setup.sh [args1] [args2] ...\nArgument can be :\n\
@@ -56,9 +48,8 @@ elif [[ $# -gt 0 ]] ; then
 	done
 fi
 
-# install the required packages 
-sudo apt-get update > /dev/null && sudo apt-get install -y fonts-powerline fonts-liberation vim dconf-cli xsel most zsh bat tmux git curl tilix > /dev/null 
-echo "[PACKAGES]	: OK"
+# install required packages 
+sudo apt-get update > /dev/null && sudo apt-get install -y $PACKAGES >/dev/null 
 
 if [[ $DESKTOP -eq 1 ]] ; then
 	if [[ -z $XDG_CURRENT_DESKTOP ]] || [[ -z $GDMSESSION ]] ; then
